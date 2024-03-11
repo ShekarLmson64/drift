@@ -2,14 +2,37 @@ import React, { useState } from 'react'
 import { TitleColumn } from './loginScreen.styles'
 import { useMobileCheck } from '@/customHooks/mobileCheck'
 import { AccountCircle, Visibility, VisibilityOff } from '@mui/icons-material';
-import { FormControl, IconButton, InputAdornment, OutlinedInput, Stack, Typography } from '@mui/material'
+import { Button, FormControl, IconButton, InputAdornment, OutlinedInput, Stack, Typography } from '@mui/material'
 import { DesktopPxToVw, MobilePxToVw } from '@/utils/pxToVw';
+import { handler as LoginHandler } from '../api/handlers/login.service';
 
 export default function SignIn({ setIsSignIn }: any) {
     const isMobile = useMobileCheck()
-    const [showPassword, setShowPassword]: any = useState<Boolean>(false)
+    const [showPassword, setShowPassword]: any = useState<boolean>(false)
+    const [email, setEmail]: any = useState<string>("")
+    const [password, setPassword]: any = useState<string>("")
+    const handleEmail = (value: string) => {
+        setEmail(value)
+    }
+    const handlePassword = (value: string) => {
+        setPassword(value)
+    }
     const handleClickShowPassword = () => {
         setShowPassword(!showPassword)
+    }
+    const handleLogin = async () => {
+        const payload = {
+            email,
+            password
+        }
+        try {
+            const { error, data } = await LoginHandler.apiCall(payload)
+            if (error === false) {
+                global?.window?.localStorage?.setItem("accessToken", data?.token)
+            }
+        } catch (error) {
+            console.log("error at SSO Login", error)
+        }
     }
     return (
         <>
@@ -20,6 +43,7 @@ export default function SignIn({ setIsSignIn }: any) {
             <Stack rowGap={isMobile ? MobilePxToVw(20) : DesktopPxToVw(20)}>
                 <FormControl variant="outlined" fullWidth>
                     <OutlinedInput
+                        onChange={(e: any) => handleEmail(e.target?.value)}
                         id="email"
                         aria-describedby="email"
                         inputProps={{
@@ -37,6 +61,7 @@ export default function SignIn({ setIsSignIn }: any) {
                     <OutlinedInput
                         id="password"
                         type={showPassword ? 'text' : 'password'}
+                        onChange={(e: any) => handlePassword(e.target?.value)}
                         endAdornment={
                             <InputAdornment position="end">
                                 <IconButton
@@ -51,6 +76,7 @@ export default function SignIn({ setIsSignIn }: any) {
                         placeholder="Password"
                     />
                 </FormControl>
+                <Button variant="contained" onClick={handleLogin}>Proceed</Button>
             </Stack>
             <TitleColumn>
                 <Stack flexDirection={"row"} columnGap={"6px"}>

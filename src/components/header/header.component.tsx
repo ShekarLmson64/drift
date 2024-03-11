@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { ButtonStack, CustomSearch, HeaderStack, IconWrapper, MainBox, SearchIconWrapper, SpacerBox, StyledInputBase } from './header.styles'
 import Dimage from '../custom/customImage/customImage'
 import { DesktopPxToVw } from '@/utils/pxToVw'
@@ -6,17 +6,27 @@ import HeaderMenu from './header-menu.component'
 import SearchIcon from '@mui/icons-material/Search';
 import Link from 'next/link'
 import { AccountCircleOutlined, ShoppingCartOutlined } from '@mui/icons-material';
-import { Box, Drawer, Stack, Typography } from '@mui/material'
+import { Box, Drawer, Typography } from '@mui/material'
 import LoginScreen from '@/features/sso/login/loginScreen.component'
+import { useLoggedIn } from '@/customHooks/useLoggedIn'
 
 export default function Header() {
-  const isUser: Boolean = false
+  const isUserLogged = useLoggedIn()
+  useEffect(() => {
+    if (isUserLogged) {
+      setShowLogin(false)
+    }
+  }, [isUserLogged])
+
   const [showLogin, setShowLogin]: any = useState<Boolean>(false)
   const handleClose = () => {
     setShowLogin(false)
   }
   const handleOpen = () => {
     setShowLogin(true)
+  }
+  const handleLogout = () => {
+    global?.window?.localStorage?.removeItem("accessToken")
   }
   return (
     <Box>
@@ -49,11 +59,8 @@ export default function Header() {
             </IconWrapper>
             <IconWrapper>
               {
-                isUser
-                  ? <Stack flexDirection={"row"}>
-                    <AccountCircleOutlined fontSize="medium" />
-                    <Typography onClick={handleOpen}>MY ACCOUNT</Typography>
-                  </Stack>
+                isUserLogged
+                  ? <AccountCircleOutlined fontSize="medium" onClick={handleLogout} />
                   : <Typography fontWeight={600} onClick={handleOpen}>LOGIN</Typography>
               }
             </IconWrapper>
