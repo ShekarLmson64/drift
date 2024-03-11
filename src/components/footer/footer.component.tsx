@@ -1,31 +1,33 @@
 import React from 'react'
-import { ColumnStack, FooterBox } from './footer.styles'
+import { ColumnStack, DynamicStack, FooterBox } from './footer.styles'
 import FooterList from './footerList.component'
 import footerData from "./footerItems.json"
 import { Box, Stack, Typography } from '@mui/material'
 import Dimage from '../custom/customImage/customImage'
-import { DesktopPxToVw } from '@/utils/pxToVw'
+import { DesktopPxToVw, MobilePxToVw } from '@/utils/pxToVw'
+import { useMobileCheck } from '@/customHooks/mobileCheck'
 
 export default function Footer() {
     const { description, items, rights } = footerData
+    const isMobile = useMobileCheck()
     return (
         <FooterBox>
-            <Stack flexDirection={"row"} width={"100%"} columnGap={DesktopPxToVw(80)}>
-                <ColumnStack maxWidth={DesktopPxToVw(400)}>
+            <DynamicStack>
+                <ColumnStack maxWidth={isMobile ? "unset" : DesktopPxToVw(400)}>
                     <Dimage
                         src={"/icons/home-icon.png"}
                         alt={"home-icon"}
                         width={'100%'}
                         height={'auto'}
                         styles={{
-                            maxWidth: DesktopPxToVw(120),
+                            maxWidth: isMobile ? MobilePxToVw(120) : DesktopPxToVw(120),
                             mixBlendMode: "multiply"
                         }}
                     />
                     <Typography>{description}</Typography>
                 </ColumnStack>
                 <FooterList items={items} />
-            </Stack>
+            </DynamicStack>
             <Box py={DesktopPxToVw(30)}>
                 <hr />
             </Box>

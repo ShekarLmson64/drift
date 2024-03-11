@@ -50,11 +50,11 @@ export const CustomSearch = styled(Box)(({ theme }) => ({
     },
     marginRight: theme.spacing(2),
     marginLeft: 0,
-    width: DesktopPxToVw(500),
+    width: DesktopPxToVw(600),
 }));
 
 export const SearchIconWrapper = styled(Box)(({ theme }) => ({
-    padding: theme.spacing(0, 2),
+    padding: theme.spacing(0, 3),
     height: '100%',
     position: 'absolute',
     pointerEvents: 'none',
