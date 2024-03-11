@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import menuItems from "./header_menu.json"
 import Link from 'next/link'
 import { MenuStack } from './header.styles'
@@ -10,6 +10,26 @@ import KeyboardArrowUpRoundedIcon from '@mui/icons-material/KeyboardArrowUpRound
 export default function HeaderMenu() {
     const [show, setShow] = useState(false)
     const handleShow = () => setShow(!show)
+    const debounceDelay = 200; // Adjust this value as needed
+    const debounceSetValue = () => {
+        setTimeout(() => {
+            setShow(false);
+        }, debounceDelay);
+    };
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrollTop = global?.window?.pageYOffset || global?.document?.documentElement?.scrollTop;
+            if (scrollTop > 0) {
+                debounceSetValue()
+            }
+        };
+        // Adds event listener to detect scroll
+        window.addEventListener('scroll', handleScroll);
+        // Removes event listener on component unmount
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
     return (
         <MenuStack>
             {
