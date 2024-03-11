@@ -1,0 +1,52 @@
+[
+  {
+    "name": "shop",
+    "label": "Shop",
+    "type": "dropdown",
+    "url": "/",
+    "options": [
+      {
+        "name": "men",
+        "label": "Men",
+        "type": "link",
+        "url": "/men/products"
+      },
+      {
+        "name": "women",
+        "label": "Women",
+        "type": "link",
+        "url": "/women/products"
+      },
+      {
+        "name": "kids",
+        "label": "Kids",
+        "type": "link",
+        "url": "/kids/products"
+      },
+      {
+        "name": "unisex",
+        "label": "Unisex",
+        "type": "link",
+        "url": "/unisex/products"
+      }
+    ]
+  },
+  {
+    "name": "sale",
+    "label": "On sale",
+    "type": "link",
+    "url": "/sale"
+  },
+  {
+    "name": "new-arrivals",
+    "label": "New Arrivals",
+    "type": "link",
+    "url": "/new-arrivals"
+  },
+  {
+    "name": "brands",
+    "label": "Brands",
+    "type": "link",
+    "url": "/brands"
+  }
+]

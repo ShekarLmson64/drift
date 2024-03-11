@@ -1,0 +1,96 @@
+{
+  "title": "STAY UPTO DATE ABOUT OUR LATEST FASHION",
+  "placeholder": "Enter your email address",
+  "primaryAction": {
+    "title": "Subscribe to Newsletter",
+    "url": ""
+  },
+  "description": "We have clothes that suits your style and which you’re proud to wear. From women to men.",
+  "rights": "Drift Clothing © 2024, All Rights Reserved",
+  "items": [
+    {
+      "title": "COMPANY",
+      "options": [
+        {
+          "title": "About",
+          "url": "/about"
+        },
+        {
+          "title": "Features",
+          "url": "/features"
+        },
+        {
+          "title": "Works",
+          "url": "/works"
+        },
+        {
+          "title": "Careers",
+          "url": "/careers"
+        }
+      ]
+    },
+    {
+      "title": "HELP",
+      "options": [
+        {
+          "title": "Customer Support",
+          "url": "/customer-support"
+        },
+        {
+          "title": "Delivery Details",
+          "url": "/delivery-details"
+        },
+        {
+          "title": "Terms & Conditions",
+          "url": "/terms-and-conditions"
+        },
+        {
+          "title": "Privacy Policy",
+          "url": "/privacy-policy"
+        }
+      ]
+    },
+    {
+      "title": "FAQ",
+      "options": [
+        {
+          "title": "Account",
+          "url": "/account"
+        },
+        {
+          "title": "Manage Deliveries",
+          "url": "/manage-deliveries"
+        },
+        {
+          "title": "Orders",
+          "url": "/orders"
+        },
+        {
+          "title": "Payments",
+          "url": "/payments"
+        }
+      ]
+    },
+    {
+      "title": "Resources",
+      "options": [
+        {
+          "title": "Free eBooks",
+          "url": "/free-ebooks"
+        },
+        {
+          "title": "Development Tutorial",
+          "url": "/development-tutorial"
+        },
+        {
+          "title": "Blogs",
+          "url": "/blogs"
+        },
+        {
+          "title": "Youtube Playlist",
+          "url": "/youtube-playlist"
+        }
+      ]
+    }
+  ]
+}

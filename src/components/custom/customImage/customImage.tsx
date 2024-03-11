@@ -3,12 +3,13 @@ import React from 'react'
 interface ImageProps {
     src: string,
     alt: string
-    width: string,
-    height: string
+    width?: string,
+    height?: string
+    styles?: any
 }
 
-export default function customImage(props: ImageProps) {
-    const { src, alt, width = "auto", height = "auto" } = props
+export default function Dimage(props: ImageProps) {
+    const { src, alt, width = "auto", height = "auto", styles = {} } = props
     return (
         <Box
             component={"img"}
@@ -18,6 +19,8 @@ export default function customImage(props: ImageProps) {
             decoding="async"
             width={width}
             height={height}
+            display={"flex"}
+            sx={{ ...styles }}
         />
     )
 }
