@@ -32,8 +32,13 @@ export const MenuStack = styled(Stack)(() => ({
 
 export const ButtonStack = styled(Stack)(() => ({
     flexDirection: "row",
+    alignItems: "center",
     justifyContent: "space-between",
     columnGap: DesktopPxToVw(40),
+}))
+
+export const IconWrapper = styled(Box)(() => ({
+    cursor: "pointer"
 }))
 
 export const CustomSearch = styled(Box)(({ theme }) => ({

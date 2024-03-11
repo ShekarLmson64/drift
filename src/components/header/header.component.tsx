@@ -1,15 +1,23 @@
-import React from 'react'
-import { ButtonStack, CustomSearch, HeaderStack, MainBox, SearchIconWrapper, SpacerBox, StyledInputBase } from './header.styles'
+import React, { useState } from 'react'
+import { ButtonStack, CustomSearch, HeaderStack, IconWrapper, MainBox, SearchIconWrapper, SpacerBox, StyledInputBase } from './header.styles'
 import Dimage from '../custom/customImage/customImage'
 import { DesktopPxToVw } from '@/utils/pxToVw'
 import HeaderMenu from './header-menu.component'
 import SearchIcon from '@mui/icons-material/Search';
 import Link from 'next/link'
 import { AccountCircleOutlined, ShoppingCartOutlined } from '@mui/icons-material';
-import { Box, Typography } from '@mui/material'
+import { Box, Drawer, Stack, Typography } from '@mui/material'
+import LoginScreen from '@/features/sso/login/loginScreen.component'
 
 export default function Header() {
-  const isUser = true
+  const isUser: Boolean = false
+  const [showLogin, setShowLogin]: any = useState<Boolean>(false)
+  const handleClose = () => {
+    setShowLogin(false)
+  }
+  const handleOpen = () => {
+    setShowLogin(true)
+  }
   return (
     <Box>
       <MainBox>
@@ -34,14 +42,28 @@ export default function Header() {
             />
           </CustomSearch>
           <ButtonStack>
-            <ShoppingCartOutlined fontSize="medium" />
-            {
-              isUser ? <AccountCircleOutlined fontSize="medium" /> : <Typography>Login</Typography>
-            }
+            <IconWrapper>
+              <Link href={"/cart"}>
+                <ShoppingCartOutlined fontSize="medium" />
+              </Link>
+            </IconWrapper>
+            <IconWrapper>
+              {
+                isUser
+                  ? <Stack flexDirection={"row"}>
+                    <AccountCircleOutlined fontSize="medium" />
+                    <Typography onClick={handleOpen}>MY ACCOUNT</Typography>
+                  </Stack>
+                  : <Typography fontWeight={600} onClick={handleOpen}>LOGIN</Typography>
+              }
+            </IconWrapper>
           </ButtonStack>
         </HeaderStack>
       </MainBox>
       <SpacerBox />
+      <Drawer open={showLogin} onClose={handleClose} anchor="right">
+        <LoginScreen handleClose={handleClose} />
+      </Drawer>
     </Box>
   )
 }
