@@ -35,11 +35,11 @@ export default function MobileSearch({ handleClose }: any) {
                     }}
                     startAdornment={
                         <InputAdornment position="start">
-                            <Stack flexDirection={"row"} columnGap={MobilePxToVw(6)}>
+                            <Stack flexDirection={"row"} columnGap={MobilePxToVw(6)} alignItems={"center"}>
                                 <Typography>Search for</Typography>
                                 <Typewriter
                                     options={{
-                                        strings: ["shirts", "shoes", "trousers", "balaclava", "t-shirts"],
+                                        strings: ["shirts", "jeans", "trousers", "balaclava", "t-shirts", "jackets"],
                                         autoStart: true,
                                         loop: true,
                                     }}
