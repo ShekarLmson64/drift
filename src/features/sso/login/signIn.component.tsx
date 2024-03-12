@@ -76,7 +76,9 @@ export default function SignIn({ setIsSignIn }: any) {
                         placeholder="Password"
                     />
                 </FormControl>
-                <Button variant="contained" onClick={handleLogin} sx={{ backgroundColor: "#000" }}>Proceed</Button>
+                <Button variant="contained" onClick={handleLogin} sx={{ backgroundColor: "#000" }}>
+                    Proceed
+                </Button>
             </Stack>
             <TitleColumn>
                 <Stack flexDirection={"row"} columnGap={"6px"}>

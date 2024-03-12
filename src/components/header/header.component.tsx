@@ -90,7 +90,7 @@ export default function Header() {
                   sx={{
                     "& .MuiInputAdornment-positionStart": {
                       position: "absolute",
-                      left: DesktopPxToVw(100),
+                      left: DesktopPxToVw(80),
                       zIndex: "1"
                     },
                     "& .Typewriter": {

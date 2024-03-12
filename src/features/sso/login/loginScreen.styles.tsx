@@ -37,8 +37,8 @@ export const DetailStack = styled(Stack)(() => ({
     columnGap: DesktopPxToVw(20),
     rowGap: 0,
     "@media (max-width: 640px)": {
-        flexDirection: "row",
+        flexDirection: "column",
         columnGap: 0,
-        rowGap: MobilePxToVw(40)
+        rowGap: MobilePxToVw(20)
     },
 }))
