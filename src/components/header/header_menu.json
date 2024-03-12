@@ -9,25 +9,29 @@
         "name": "men",
         "label": "Men",
         "type": "link",
-        "url": "/men/products"
+        "url": "/men/products",
+        "image": "https://i.ibb.co/w61rCNV/Screenshot-2024-03-13-000622.png"
       },
       {
         "name": "women",
         "label": "Women",
         "type": "link",
-        "url": "/women/products"
+        "url": "/women/products",
+        "image": "https://i.ibb.co/Z1S0PXH/Screenshot-2024-03-13-000606.png"
       },
       {
         "name": "kids",
         "label": "Kids",
         "type": "link",
-        "url": "/kids/products"
+        "url": "/kids/products",
+        "image": "https://i.ibb.co/1ZZ1jSn/Screenshot-2024-03-13-000734.png"
       },
       {
         "name": "unisex",
         "label": "Unisex",
         "type": "link",
-        "url": "/unisex/products"
+        "url": "/unisex/products",
+        "image": "https://i.ibb.co/k3Lkh0T/Screenshot-2024-03-13-000954.png"
       }
     ]
   },

@@ -1,5 +1,5 @@
 import React from 'react'
-import { ColumnStack, FooterStack } from './footer.styles'
+import { ColumnStack, FooterStack, StyledText } from './footer.styles'
 import { Box, Typography } from '@mui/material'
 import Link from 'next/link'
 import { DesktopPxToVw } from '@/utils/pxToVw'
@@ -14,9 +14,9 @@ export default function FooterList({ items }: any) {
             {
               footerItem?.options?.map((option: any) =>
                 <Link href={option?.url} key={option?.title}>
-                  <Typography>
+                  <StyledText>
                     {option?.title}
-                  </Typography>
+                  </StyledText>
                 </Link>
               )
             }

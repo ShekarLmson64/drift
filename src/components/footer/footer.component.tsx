@@ -2,7 +2,7 @@ import React from 'react'
 import { ColumnStack, DynamicStack, FooterBox } from './footer.styles'
 import FooterList from './footerList.component'
 import footerData from "./footerItems.json"
-import { Box, Stack, Typography } from '@mui/material'
+import { Box, Stack, Typography, alpha } from '@mui/material'
 import Dimage from '../custom/customImage/customImage'
 import { DesktopPxToVw, MobilePxToVw } from '@/utils/pxToVw'
 import { useMobileCheck } from '@/customHooks/mobileCheck'
@@ -24,15 +24,15 @@ export default function Footer() {
                             mixBlendMode: "multiply"
                         }}
                     />
-                    <Typography>{description}</Typography>
+                    <Typography color={alpha("#000", 0.8)}>{description}</Typography>
                 </ColumnStack>
                 <FooterList items={items} />
             </DynamicStack>
-            <Box py={DesktopPxToVw(30)}>
+            <Box py={isMobile ? MobilePxToVw(30) : DesktopPxToVw(30)}>
                 <hr />
             </Box>
             <Stack flexDirection={"row"} justifyContent={"space-between"}>
-                <Typography>{rights}</Typography>
+                <Typography color={alpha("#000", 0.6)} variant="caption">{rights}</Typography>
             </Stack>
         </FooterBox>
     )

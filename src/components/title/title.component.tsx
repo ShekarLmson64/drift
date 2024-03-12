@@ -10,7 +10,11 @@ export default function Title({ title, titleVariant }: any) {
         <TitleStack width={"100"}>
             {
                 titles?.map((singleTitle: any) =>
-                    <Typography fontWeight={700} variant={"h3"}>{singleTitle}</Typography>
+                    <Typography
+                        fontWeight={700}
+                        variant={isMobile ? "h4" : "h3"}>
+                        {singleTitle}
+                    </Typography>
                 )
             }
         </TitleStack>

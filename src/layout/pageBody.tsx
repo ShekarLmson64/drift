@@ -1,12 +1,12 @@
 import Group from '@/components/group'
-import HeroBanner from '@/components/herobanner/herobanner.component'
+import Banner from '@/components/banner/banner.component'
 import { Stack } from '@mui/material'
 import React from 'react'
 
 export default function PageBody() {
     return (
         <Stack>
-            <HeroBanner />
+            <Banner />
             <Group />
         </Stack>
     )

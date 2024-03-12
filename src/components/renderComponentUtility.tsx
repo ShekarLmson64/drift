@@ -1,7 +1,7 @@
 import React from 'react'
 import Group from './group'
 import Card from './card'
-import HeroBanner from './herobanner/herobanner.component'
+import Banner from './banner/banner.component'
 
 export const renderComponentUtility = (
     props: any,
@@ -12,7 +12,7 @@ export const renderComponentUtility = (
         case "card":
             return <Card />
         case "banner":
-            return <HeroBanner {...props} />
+            return <Banner {...props} />
         // case "tabLinks":
         //     return <RenderTabsComponent {...props} />
         // case "tabs":

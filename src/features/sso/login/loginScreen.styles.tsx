@@ -2,7 +2,7 @@ import { DesktopPxToVw, MobilePxToVw } from "@/utils/pxToVw";
 import { Box, Stack, styled } from "@mui/material";
 
 export const LoginStack = styled(Stack)(() => ({
-    width: "35vw",
+    width: "40vw",
     padding: DesktopPxToVw(100),
     rowGap: DesktopPxToVw(60),
     "@media (max-width: 640px)": {

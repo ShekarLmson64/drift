@@ -1,5 +1,5 @@
-import { DesktopPxToVw } from "@/utils/pxToVw";
-import { Box, InputBase, Stack, alpha, styled } from "@mui/material";
+import { DesktopPxToVw, MobilePxToVw } from "@/utils/pxToVw";
+import { Box, InputBase, Stack, styled } from "@mui/material";
 
 export const MainBox = styled(Box)(() => ({
     width: "100%",
@@ -8,12 +8,18 @@ export const MainBox = styled(Box)(() => ({
     top: 0,
     background: "#fff",
     padding: `${DesktopPxToVw(20)} ${DesktopPxToVw(120)}`, // 10px to top-bottom and 60px to right-left
-    boxShadow: "0px 2px 1px -1px rgba(0,0,0,0.2)"
+    boxShadow: "0px 2px 1px -1px rgba(0,0,0,0.2)",
+    "@media (max-width: 640px)": {
+        padding: `${MobilePxToVw(20)} ${MobilePxToVw(30)}`
+    },
 }))
 
 export const SpacerBox = styled(Box)(() => ({
     width: "100%",
-    height: DesktopPxToVw(110)
+    height: DesktopPxToVw(90),
+    "@media (max-width: 640px)": {
+        height: MobilePxToVw(80)
+    },
 }))
 
 export const HeaderStack = styled(Stack)(() => ({
@@ -27,7 +33,13 @@ export const MenuStack = styled(Stack)(() => ({
     flexDirection: "row",
     justifyContent: "space-between",
     columnGap: DesktopPxToVw(40),
-    alignItems: "center"
+    alignItems: "center",
+    "@media (max-width: 640px)": {
+        padding: `0 ${MobilePxToVw(30)}`,
+        flexDirection: "column",
+        rowGap: MobilePxToVw(40),
+        alignItems: "start",
+    },
 }))
 
 export const ButtonStack = styled(Stack)(() => ({
@@ -35,6 +47,9 @@ export const ButtonStack = styled(Stack)(() => ({
     alignItems: "center",
     justifyContent: "space-between",
     columnGap: DesktopPxToVw(40),
+    "@media (max-width: 640px)": {
+        columnGap: MobilePxToVw(20),
+    },
 }))
 
 export const IconWrapper = styled(Box)(() => ({
@@ -51,6 +66,9 @@ export const CustomSearch = styled(Box)(({ theme }) => ({
     marginRight: theme.spacing(2),
     marginLeft: 0,
     width: DesktopPxToVw(600),
+    "@media (max-width: 640px)": {
+        width: "100%",
+    },
 }));
 
 export const SearchIconWrapper = styled(Box)(({ theme }) => ({
@@ -67,7 +85,6 @@ export const StyledInputBase = styled(InputBase)(({ theme }) => ({
     color: 'inherit',
     '& .MuiInputBase-input': {
         padding: theme.spacing(1, 1, 1, 0),
-        // vertical padding + font size from searchIcon
         paddingLeft: `calc(1em + ${theme.spacing(4)})`,
         transition: theme.transitions.create('width'),
         width: '100%',
@@ -76,4 +93,23 @@ export const StyledInputBase = styled(InputBase)(({ theme }) => ({
         },
     },
 }));
+
+export const PositionBox = styled(Box)(() => ({
+    position: "absolute",
+    cursor: "pointer",
+    top: DesktopPxToVw(50),
+    right: DesktopPxToVw(50),
+    "@media (max-width: 640px)": {
+        top: MobilePxToVw(40),
+        right: MobilePxToVw(40),
+    },
+}))
+
+export const MobileMenuStack = styled(Stack)(() => ({
+    width: "100vw",
+    "@media (max-width: 640px)": {
+        padding: MobilePxToVw(40),
+        rowGap: MobilePxToVw(50),
+    },
+}))
 
