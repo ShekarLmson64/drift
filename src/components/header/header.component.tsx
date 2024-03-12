@@ -26,9 +26,11 @@ export default function Header() {
   }, [isUserLogged])
 
   //** states
-  const [showLogin, setShowLogin]: any = useState<Boolean>(false)
-  const [showMenu, setShowMenu]: any = useState<Boolean>(false)
-  const [showSearch, setShowSearch]: any = useState<Boolean>(false)
+  const [showLogin, setShowLogin]: any = useState<boolean>(false)
+  const [showMenu, setShowMenu]: any = useState<boolean>(false)
+  const [showSearch, setShowSearch]: any = useState<boolean>(false)
+  const [focused, setFocused]: any = useState<boolean>(false)
+  const [value, setValue]: any = useState<string>("")
 
   const handleClose = () => {
     setShowLogin(false)
@@ -46,6 +48,9 @@ export default function Header() {
   }
   const handleLogout = () => {
     global?.window?.localStorage?.removeItem("accessToken")
+  }
+  const handleSearchValue = (e: any) => {
+    setValue(e.target.value)
   }
   useEffect(() => {
     if (router?.isReady) {
@@ -77,24 +82,36 @@ export default function Header() {
                   <SearchIcon />
                 </SearchIconWrapper>
                 <StyledInputBase
+                  value={value}
+                  onChange={handleSearchValue}
+                  onClick={() => setFocused(true)}
+                  onFocus={() => setFocused(true)}
+                  onBlur={() => setFocused(false)}
                   sx={{
                     "& .MuiInputAdornment-positionStart": {
-                      paddingLeft: DesktopPxToVw(100)
+                      position: "absolute",
+                      left: DesktopPxToVw(100),
+                      zIndex: "1"
+                    },
+                    "& .Typewriter": {
+                      display: "flex",
+                      alignSelf: "end"
                     }
                   }}
                   startAdornment={
-                    <InputAdornment position="start">
-                      <Stack flexDirection={"row"} columnGap={DesktopPxToVw(6)} alignItems={"center"}>
-                        <Typography>Search for</Typography>
-                        <Typewriter
-                          options={{
-                            strings: ["shirts", "jeans", "trousers", "balaclava", "t-shirts", "jackets"],
-                            autoStart: true,
-                            loop: true,
-                          }}
-                        />
-                      </Stack>
-                    </InputAdornment>
+                    focused ? <></> :
+                      <InputAdornment position="start">
+                        <Stack flexDirection={"row"} columnGap={DesktopPxToVw(6)}>
+                          <Typography>Search for</Typography>
+                          <Typewriter
+                            options={{
+                              strings: ["shirts", "jeans", "hoodies", "trousers", "balaclava", "t-shirts", "jackets"],
+                              autoStart: true,
+                              loop: true,
+                            }}
+                          />
+                        </Stack>
+                      </InputAdornment>
                   }
                   inputProps={{ 'aria-label': 'search' }}
                 />

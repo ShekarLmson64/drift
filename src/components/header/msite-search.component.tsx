@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Typewriter from 'typewriter-effect';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import SearchIcon from '@mui/icons-material/Search';
@@ -9,6 +9,11 @@ import { MobilePxToVw } from '@/utils/pxToVw';
 import { InputAdornment, Stack, Typography } from '@mui/material';
 
 export default function MobileSearch({ handleClose }: any) {
+    const [focused, setFocused]: any = useState<boolean>(false)
+    const [value, setValue]: any = useState<string>("")
+    const handleSearchValue = (e: any) => {
+        setValue(e.target.value)
+    }
     return (
         <MobileMenuStack>
             <PositionBox onClick={handleClose}>
@@ -28,26 +33,37 @@ export default function MobileSearch({ handleClose }: any) {
                     <SearchIcon />
                 </SearchIconWrapper>
                 <StyledInputBase
+                    value={value}
+                    onChange={handleSearchValue}
+                    onClick={() => setFocused(true)}
+                    onFocus={() => setFocused(true)}
+                    onBlur={() => setFocused(false)}
                     sx={{
                         "& .MuiInputAdornment-positionStart": {
-                            paddingLeft: MobilePxToVw(110)
+                            position: "absolute",
+                            left: MobilePxToVw(100),
+                            zIndex: "-9"
+                        },
+                        "& .Typewriter": {
+                            display: "flex",
+                            alignSelf: "end"
                         }
                     }}
                     startAdornment={
-                        <InputAdornment position="start">
-                            <Stack flexDirection={"row"} columnGap={MobilePxToVw(6)} alignItems={"center"}>
-                                <Typography>Search for</Typography>
-                                <Typewriter
-                                    options={{
-                                        strings: ["shirts", "jeans", "trousers", "balaclava", "t-shirts", "jackets"],
-                                        autoStart: true,
-                                        loop: true,
-                                    }}
-                                />
-                            </Stack>
-                        </InputAdornment>
+                        focused ? <></> :
+                            <InputAdornment position="start">
+                                <Stack flexDirection={"row"} columnGap={MobilePxToVw(8)}>
+                                    <Typography>Search for</Typography>
+                                    <Typewriter
+                                        options={{
+                                            strings: ["shirts", "jeans", "hoodies", "trousers", "balaclava", "t-shirts", "jackets"],
+                                            autoStart: true,
+                                            loop: true,
+                                        }}
+                                    />
+                                </Stack>
+                            </InputAdornment>
                     }
-                    inputProps={{ 'aria-label': 'search' }}
                 />
             </CustomSearch>
         </MobileMenuStack>

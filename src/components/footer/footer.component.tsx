@@ -20,11 +20,11 @@ export default function Footer() {
                         width={'100%'}
                         height={'auto'}
                         styles={{
-                            maxWidth: isMobile ? MobilePxToVw(120) : DesktopPxToVw(120),
+                            maxWidth: isMobile ? MobilePxToVw(160) : DesktopPxToVw(120),
                             mixBlendMode: "multiply"
                         }}
                     />
-                    <Typography color={alpha("#000", 0.8)}>{description}</Typography>
+                    <Typography variant="body2" color={alpha("#000", 0.8)}>{description}</Typography>
                 </ColumnStack>
                 <FooterList items={items} />
             </DynamicStack>
