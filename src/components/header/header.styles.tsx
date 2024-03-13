@@ -109,4 +109,14 @@ export const MobileMenuStack = styled(Stack)(() => ({
         rowGap: MobilePxToVw(50),
     },
 }))
+export const RowStack = styled(Stack)(() => ({
+    width: "fit-content",
+    alignSelf: "center",
+    flexDirection: "row",
+    columnGap: DesktopPxToVw(20),
+    alignItems: "center",
+    "@media (max-width: 640px)": {
+        columnGap: MobilePxToVw(20),
+    },
+}))
 

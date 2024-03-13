@@ -1,5 +1,5 @@
 import { DesktopPxToVw, MobilePxToVw } from "@/utils/pxToVw";
-import { Box, Stack, styled } from "@mui/material";
+import { Box, OutlinedInput, Stack, styled } from "@mui/material";
 
 export const LoginStack = styled(Stack)(() => ({
     width: "40vw",
@@ -33,12 +33,18 @@ export const PositionBox = styled(Box)(() => ({
 }))
 
 export const DetailStack = styled(Stack)(() => ({
+    flexWrap: "wrap",
     flexDirection: "row",
-    columnGap: DesktopPxToVw(20),
-    rowGap: 0,
+    rowGap: DesktopPxToVw(20),
     "@media (max-width: 640px)": {
+        flexWrap: "nowrap",
         flexDirection: "column",
         columnGap: 0,
         rowGap: MobilePxToVw(20)
+    },
+}))
+
+export const CustomInputField = styled(OutlinedInput)(() => ({
+    "@media (max-width: 640px)": {
     },
 }))

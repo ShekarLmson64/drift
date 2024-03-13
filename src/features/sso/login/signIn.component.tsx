@@ -5,33 +5,58 @@ import { AccountCircle, Visibility, VisibilityOff } from '@mui/icons-material';
 import { Button, FormControl, IconButton, InputAdornment, OutlinedInput, Stack, Typography } from '@mui/material'
 import { DesktopPxToVw, MobilePxToVw } from '@/utils/pxToVw';
 import { handler as LoginHandler } from '../api/handlers/login.service';
+import { handler as ProfileHandler } from '../api/handlers/profile.service';
+import { useRouter } from 'next/router';
 
 export default function SignIn({ setIsSignIn }: any) {
+    const router = useRouter()
     const isMobile = useMobileCheck()
-    const [showPassword, setShowPassword]: any = useState<boolean>(false)
-    const [email, setEmail]: any = useState<string>("")
-    const [password, setPassword]: any = useState<string>("")
-    const handleEmail = (value: string) => {
-        setEmail(value)
-    }
-    const handlePassword = (value: string) => {
-        setPassword(value)
+    //** FYI: Typescript automatically infirm the states types based on initial value  */
+    const [showPassword, setShowPassword]: any = useState(false)
+    const [loading, setLoading]: any = useState(false)
+    const [payload, setPayload]: any = useState({
+        email: "",
+        password: ""
+    })
+
+    const handlePayload = (e: any) => {
+        const { value, name } = e?.target
+        setPayload({
+            ...payload,
+            [name]: value
+        })
     }
     const handleClickShowPassword = () => {
         setShowPassword(!showPassword)
     }
-    const handleLogin = async () => {
-        const payload = {
-            email,
-            password
+
+    const setProfileDetails = async () => {
+        setLoading(true)
+        try {
+            const { error, data } = await ProfileHandler.apiCall()
+            if (error === false) {
+                global?.window?.localStorage?.setItem("firstName", data?.firstName)
+                global?.window?.localStorage?.setItem("lastName", data?.lastName)
+                router?.reload()
+            }
+        } catch (error) {
+            console.log("error at user profile", error)
+        } finally {
+            setLoading(false)
         }
+    }
+    const handleLogin = async () => {
+        setLoading(true)
         try {
             const { error, data } = await LoginHandler.apiCall(payload)
             if (error === false) {
                 global?.window?.localStorage?.setItem("accessToken", data?.token)
+                setProfileDetails()
             }
         } catch (error) {
             console.log("error at SSO Login", error)
+        } finally {
+            setLoading(false)
         }
     }
     return (
@@ -43,25 +68,24 @@ export default function SignIn({ setIsSignIn }: any) {
             <Stack rowGap={isMobile ? MobilePxToVw(20) : DesktopPxToVw(20)}>
                 <FormControl variant="outlined" fullWidth>
                     <OutlinedInput
-                        onChange={(e: any) => handleEmail(e.target?.value)}
+                        onChange={handlePayload}
                         id="email"
-                        aria-describedby="email"
-                        inputProps={{
-                            'aria-label': 'email',
-                        }}
+                        name="email"
                         endAdornment={
                             <InputAdornment position="end">
                                 <AccountCircle />
                             </InputAdornment>
                         }
                         placeholder='Enter your email'
+                        disabled={loading}
                     />
                 </FormControl>
                 <FormControl variant="outlined" fullWidth>
                     <OutlinedInput
                         id="password"
+                        name="password"
                         type={showPassword ? 'text' : 'password'}
-                        onChange={(e: any) => handlePassword(e.target?.value)}
+                        onChange={handlePayload}
                         endAdornment={
                             <InputAdornment position="end">
                                 <IconButton
@@ -73,10 +97,16 @@ export default function SignIn({ setIsSignIn }: any) {
                                 </IconButton>
                             </InputAdornment>
                         }
+                        disabled={loading}
                         placeholder="Password"
                     />
                 </FormControl>
-                <Button variant="contained" onClick={handleLogin} sx={{ backgroundColor: "#000" }}>
+                <Button
+                    variant="contained"
+                    onClick={handleLogin}
+                    sx={{ backgroundColor: "#000" }}
+                    disabled={loading}
+                >
                     Proceed
                 </Button>
             </Stack>

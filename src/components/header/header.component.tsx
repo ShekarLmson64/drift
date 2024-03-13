@@ -14,6 +14,7 @@ import { useMobileCheck } from '@/customHooks/mobileCheck'
 import MobileMenu from './msite-menu.component'
 import MobileSearch from './msite-search.component'
 import { ButtonStack, CustomSearch, HeaderStack, IconWrapper, MainBox, SearchIconWrapper, SpacerBox, StyledInputBase } from './header.styles'
+import ProfileModal from './profile-modal.component';
 
 export default function Header() {
   const isUserLogged = useLoggedIn()
@@ -29,6 +30,7 @@ export default function Header() {
   const [showLogin, setShowLogin]: any = useState<boolean>(false)
   const [showMenu, setShowMenu]: any = useState<boolean>(false)
   const [showSearch, setShowSearch]: any = useState<boolean>(false)
+  const [showProfile, setShowProfile]: any = useState<boolean>(false)
   const [focused, setFocused]: any = useState<boolean>(false)
   const [value, setValue]: any = useState<string>("")
 
@@ -36,6 +38,7 @@ export default function Header() {
     setShowLogin(false)
     setShowMenu(false)
     setShowSearch(false)
+    setShowProfile(false)
   }
   const handleOpen = () => {
     setShowLogin(true)
@@ -46,8 +49,8 @@ export default function Header() {
   const openSearch = () => {
     setShowSearch(true)
   }
-  const handleLogout = () => {
-    global?.window?.localStorage?.removeItem("accessToken")
+  const openProfile = () => {
+    setShowProfile(true)
   }
   const handleSearchValue = (e: any) => {
     setValue(e.target.value)
@@ -132,7 +135,7 @@ export default function Header() {
             <IconWrapper>
               {
                 isUserLogged
-                  ? <AccountCircleOutlined fontSize="medium" onClick={handleLogout} />
+                  ? <AccountCircleOutlined fontSize="medium" onClick={openProfile} />
                   : <Typography fontWeight={600} onClick={handleOpen}>LOGIN</Typography>
               }
             </IconWrapper>
@@ -148,6 +151,9 @@ export default function Header() {
       </Drawer>
       <Drawer open={showSearch} onClose={handleClose} anchor="right">
         <MobileSearch handleClose={handleClose} />
+      </Drawer>
+      <Drawer open={showProfile} onClose={handleClose} anchor="right">
+        <ProfileModal handleClose={handleClose} />
       </Drawer>
     </Box>
   )
