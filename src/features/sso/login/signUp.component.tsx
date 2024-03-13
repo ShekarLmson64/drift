@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { DetailStack, TitleColumn } from './loginScreen.styles'
 import { useMobileCheck } from '@/customHooks/mobileCheck'
 import { AccountCircle, Visibility, VisibilityOff } from '@mui/icons-material';
-import { FormControl, IconButton, InputAdornment, OutlinedInput, Stack, Typography } from '@mui/material'
+import { Button, FormControl, IconButton, InputAdornment, OutlinedInput, Stack, Typography } from '@mui/material'
 import { DesktopPxToVw, MobilePxToVw } from '@/utils/pxToVw';
 
 export default function SignUp({ setIsSignIn }: any) {
@@ -11,10 +11,13 @@ export default function SignUp({ setIsSignIn }: any) {
     const handleClickShowPassword = () => {
         setShowPassword(!showPassword)
     }
+    const handleRegister = () => {
+
+    }
     return (
         <>
             <TitleColumn>
-                <Typography variant='h4'>REGISTER WITH US</Typography>
+                <Typography fontWeight={600} variant='h6'>REGISTER WITH US</Typography>
                 <Typography variant='body2'>Enter your details to register</Typography>
             </TitleColumn>
             <Stack rowGap={isMobile ? MobilePxToVw(20) : DesktopPxToVw(20)}>
@@ -58,6 +61,9 @@ export default function SignUp({ setIsSignIn }: any) {
                         placeholder="Password"
                     />
                 </FormControl>
+                <Button variant="contained" onClick={handleRegister} sx={{ backgroundColor: "#000" }}>
+                    Register
+                </Button>
             </Stack>
             <TitleColumn>
                 <Stack flexDirection={"row"} columnGap={"6px"}>

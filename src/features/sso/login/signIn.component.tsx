@@ -37,7 +37,7 @@ export default function SignIn({ setIsSignIn }: any) {
     return (
         <>
             <TitleColumn>
-                <Typography variant='h4'>Sign in to Drift</Typography>
+                <Typography fontWeight={600} variant='h6'>Sign in to Drift</Typography>
                 <Typography variant='body2'>Enter your registered email and password</Typography>
             </TitleColumn>
             <Stack rowGap={isMobile ? MobilePxToVw(20) : DesktopPxToVw(20)}>

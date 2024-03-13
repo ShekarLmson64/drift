@@ -42,7 +42,6 @@ export default function MobileSearch({ handleClose }: any) {
                         "& .MuiInputAdornment-positionStart": {
                             position: "absolute",
                             left: MobilePxToVw(100),
-                            zIndex: "-9"
                         },
                         "& .Typewriter": {
                             display: "flex",
