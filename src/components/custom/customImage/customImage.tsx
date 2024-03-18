@@ -12,16 +12,15 @@ interface ImageProps {
 export default function Dimage(props: ImageProps) {
     const { src, alt, width = "auto", height = "auto", lazy = false, styles = {} } = props
     return (
-        <Box display={"flex"}>
-            <img
-                srcSet={src}
-                alt={alt}
-                loading={lazy ? "lazy" : "eager"}
-                decoding="async"
-                width={width}
-                height={height}
-                style={{ ...styles }}
-            />
-        </Box>
+        <Box
+            component={"img"}
+            srcSet={src}
+            alt={alt}
+            loading={lazy ? "lazy" : "eager"}
+            decoding="async"
+            width={width}
+            height={height}
+            style={{ ...styles }}
+        />
     )
 }

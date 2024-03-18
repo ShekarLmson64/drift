@@ -12,7 +12,7 @@ export default function Banner() {
                     : "/sample/herobanner1.png"}
                 alt={"home-icon"}
                 width={'100%'}
-                height={'auto'}
+                height={'100%'}
             />
         </>
     )
