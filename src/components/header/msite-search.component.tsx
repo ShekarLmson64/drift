@@ -28,42 +28,31 @@ export default function MobileSearch({ handleClose }: any) {
                     styles={{ maxWidth: MobilePxToVw(160) }}
                 />
             </Link>
-            <CustomSearch>
+            <CustomSearch onClick={() => setFocused(true)}>
                 <SearchIconWrapper>
                     <SearchIcon />
                 </SearchIconWrapper>
-                <StyledInputBase
-                    value={value}
-                    onChange={handleSearchValue}
-                    onClick={() => setFocused(true)}
-                    onFocus={() => setFocused(true)}
-                    onBlur={() => setFocused(false)}
-                    sx={{
-                        "& .MuiInputAdornment-positionStart": {
-                            position: "absolute",
-                            left: MobilePxToVw(100),
-                        },
-                        "& .Typewriter": {
-                            display: "flex",
-                            alignSelf: "end"
-                        }
-                    }}
-                    startAdornment={
-                        focused ? <></> :
-                            <InputAdornment position="start">
-                                <Stack flexDirection={"row"} columnGap={MobilePxToVw(8)}>
-                                    <Typography>Search for</Typography>
-                                    <Typewriter
-                                        options={{
-                                            strings: ["shirts", "jeans", "hoodies", "trousers", "balaclava", "t-shirts", "jackets"],
-                                            autoStart: true,
-                                            loop: true,
-                                        }}
-                                    />
-                                </Stack>
-                            </InputAdornment>
-                    }
-                />
+                {
+                    focused
+                        ? <StyledInputBase
+                            value={value}
+                            onChange={handleSearchValue}
+                            onBlur={() => setFocused(false)}
+                            inputRef={(input) => input && input?.focus()}
+                            inputProps={{ 'aria-label': 'search' }}
+                        />
+                        : <Stack className='typewriter-stack' flexDirection={"row"}
+                            columnGap={MobilePxToVw(6)}>
+                            <Typography>Search for</Typography>
+                            <Typewriter
+                                options={{
+                                    strings: ["shirts", "jeans", "hoodies", "trousers", "balaclava", "t-shirts", "jackets"],
+                                    autoStart: true,
+                                    loop: true,
+                                }}
+                            />
+                        </Stack>
+                }
             </CustomSearch>
         </MobileMenuStack>
     )

@@ -66,6 +66,17 @@ export const CustomSearch = styled(Box)(({ theme }) => ({
     marginRight: theme.spacing(2),
     marginLeft: 0,
     width: DesktopPxToVw(600),
+    "& .MuiInputAdornment-positionStart": {
+        position: "absolute",
+        left: DesktopPxToVw(80),
+        zIndex: "1"
+    },
+    "& .typewriter-stack": {
+        padding: theme.spacing(1, 1, 1, 0),
+        paddingLeft: `calc(1em + ${theme.spacing(6)})`,
+        alignItems: "center",
+        fontFamily: theme.typography.fontFamily,
+    },
     "@media (max-width: 640px)": {
         width: "100%",
     },

@@ -80,44 +80,31 @@ export default function Header() {
           {!isMobile &&
             <>
               <HeaderMenu />
-              <CustomSearch>
+              <CustomSearch onClick={() => setFocused(true)}>
                 <SearchIconWrapper>
                   <SearchIcon />
                 </SearchIconWrapper>
-                <StyledInputBase
-                  value={value}
-                  onChange={handleSearchValue}
-                  onClick={() => setFocused(true)}
-                  onFocus={() => setFocused(true)}
-                  onBlur={() => setFocused(false)}
-                  sx={{
-                    "& .MuiInputAdornment-positionStart": {
-                      position: "absolute",
-                      left: DesktopPxToVw(80),
-                      zIndex: "1"
-                    },
-                    "& .Typewriter": {
-                      display: "flex",
-                      alignSelf: "end"
-                    }
-                  }}
-                  startAdornment={
-                    focused ? <></> :
-                      <InputAdornment position="start">
-                        <Stack flexDirection={"row"} columnGap={DesktopPxToVw(6)}>
-                          <Typography>Search for</Typography>
-                          <Typewriter
-                            options={{
-                              strings: ["shirts", "jeans", "hoodies", "trousers", "balaclava", "t-shirts", "jackets"],
-                              autoStart: true,
-                              loop: true,
-                            }}
-                          />
-                        </Stack>
-                      </InputAdornment>
-                  }
-                  inputProps={{ 'aria-label': 'search' }}
-                />
+                {
+                  focused
+                    ? <StyledInputBase
+                      value={value}
+                      onChange={handleSearchValue}
+                      onBlur={() => setFocused(false)}
+                      inputRef={(input) => input && input?.focus()}
+                      inputProps={{ 'aria-label': 'search' }}
+                    />
+                    : <Stack className='typewriter-stack' flexDirection={"row"}
+                      columnGap={isMobile ? MobilePxToVw(6) : DesktopPxToVw(6)}>
+                      <Typography>Search for</Typography>
+                      <Typewriter
+                        options={{
+                          strings: ["shirts", "jeans", "hoodies", "trousers", "balaclava", "t-shirts", "jackets"],
+                          autoStart: true,
+                          loop: true,
+                        }}
+                      />
+                    </Stack>
+                }
               </CustomSearch>
             </>
           }
