@@ -66,8 +66,8 @@ export default function MobileHeaderMenu() {
                                                                     src={option?.image}
                                                                     alt={option?.label}
                                                                     lazy={true}
-                                                                    width={MobilePxToVw(700)}
-                                                                    height={MobilePxToVw(700)}
+                                                                    width={MobilePxToVw(200)}
+                                                                    height={MobilePxToVw(200)}
                                                                     styles={{ borderRadius: MobilePxToVw(10) }}
                                                                 />
                                                                 <Typography>

@@ -131,3 +131,14 @@ export const RowStack = styled(Stack)(() => ({
     },
 }))
 
+export const ModalStack = styled(Stack)(() => ({
+    width: "40vw",
+    padding: DesktopPxToVw(100),
+    rowGap: DesktopPxToVw(60),
+    "@media (max-width: 640px)": {
+        width: "100%",
+        padding: MobilePxToVw(80),
+        rowGap: MobilePxToVw(50),
+    },
+}))
+

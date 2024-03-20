@@ -17,8 +17,8 @@ export default function Homepage() {
     )
 }
 
-export const getServerSideProps = async (context: any) => {
-    let { resolvedUrl } = context
-    const baseProps = await basePageServerSide(context, resolvedUrl.split("?")[0])
-    return baseProps
-}
+// export const getServerSideProps = async (context: any) => {
+//     let { resolvedUrl } = context
+//     const baseProps = await basePageServerSide(context, resolvedUrl.split("?")[0])
+//     return baseProps
+// }

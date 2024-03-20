@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
-import { MobileMenuStack, PositionBox, RowStack } from './header.styles'
+import { MobileMenuStack, ModalStack, PositionBox, RowStack } from './header.styles'
 import Link from 'next/link';
 import Dimage from '../custom/customImage/customImage';
 import { DesktopPxToVw, MobilePxToVw } from '@/utils/pxToVw';
@@ -18,7 +18,7 @@ export default function ProfileModal({ handleClose }: any) {
         router?.reload()
     }
     return (
-        <MobileMenuStack>
+        <ModalStack>
             <PositionBox onClick={handleClose}>
                 <CloseRoundedIcon />
             </PositionBox>
@@ -28,7 +28,7 @@ export default function ProfileModal({ handleClose }: any) {
                     alt={"home-icon"}
                     width={'100%'}
                     height={'100%'}
-                    styles={{ maxWidth: MobilePxToVw(160) }}
+                    styles={{ maxWidth: isMobile ? DesktopPxToVw(160) : MobilePxToVw(160) }}
                 />
             </Link>
             <Stack alignItems={"center"} width="100%" rowGap={DesktopPxToVw(100)}>
@@ -47,6 +47,6 @@ export default function ProfileModal({ handleClose }: any) {
                     Log out
                 </Button>
             </Stack>
-        </MobileMenuStack>
+        </ModalStack>
     )
 }

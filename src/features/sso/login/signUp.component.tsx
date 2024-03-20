@@ -5,6 +5,7 @@ import { handler as RegisterHandler } from '../api/handlers/register.service';
 import { AccountCircle, Visibility, VisibilityOff } from '@mui/icons-material';
 import { Button, FormControl, IconButton, InputAdornment, Stack, Typography } from '@mui/material'
 import { DesktopPxToVw } from '@/utils/pxToVw';
+import { handler as ProfileHandler } from '../api/handlers/profile.service';
 import { useRouter } from 'next/router';
 
 export default function SignUp({ setIsSignIn }: any) {
@@ -53,13 +54,28 @@ export default function SignUp({ setIsSignIn }: any) {
     const handleClickShowPassword = () => {
         setShowPassword(!showPassword)
     }
+    const setProfileDetails = async () => {
+        setLoading(true)
+        try {
+            const { error, data } = await ProfileHandler.apiCall()
+            if (error === false) {
+                global?.window?.localStorage?.setItem("firstName", data?.firstName)
+                global?.window?.localStorage?.setItem("lastName", data?.lastName)
+                router?.reload()
+            }
+        } catch (error) {
+            console.log("error at user profile", error)
+        } finally {
+            setLoading(false)
+        }
+    }
     const handleRegister = async () => {
         setLoading(true)
         try {
             const { error, data } = await RegisterHandler.apiCall(payload)
             if (error === false) {
                 global?.window?.localStorage?.setItem("accessToken", data?.token)
-                router?.reload()
+                setProfileDetails()
             }
         } catch (error) {
             console.log("error at SSO Login", error)
