@@ -14,9 +14,7 @@ import {
 import {
   Box,
   Drawer,
-  InputAdornment,
   Stack,
-  Switch,
   Typography,
 } from '@mui/material'
 import LoginScreen from '@/features/sso/login/loginScreen.component'
@@ -58,9 +56,9 @@ export default function Header() {
   const [showSearch, setShowSearch]: any = useState<boolean>(false)
   const [showProfile, setShowProfile]: any = useState<boolean>(false)
   const [focused, setFocused]: any = useState<boolean>(false)
-
   const [value, setValue]: any = useState<string>('')
 
+  //** handler functions
   const handleClose = () => {
     setShowLogin(false)
     setShowMenu(false)
@@ -103,9 +101,13 @@ export default function Header() {
                 src={'/icons/home-icon.png'}
                 alt={'home-icon'}
                 width={'100%'}
-                height={'100%'}
+                height={'auto'}
                 styles={{
                   maxWidth: isMobile ? MobilePxToVw(160) : DesktopPxToVw(140),
+                  mixBlendMode: isDarkMode ? "screen" : "unset",
+                  filter: isDarkMode ? "invert(1)" : "invert(0)",
+                  display: "flex",
+                  alignSelf: "center"
                 }}
               />
             </Link>
@@ -175,7 +177,6 @@ export default function Header() {
                 </Typography>
               )}
             </IconWrapper>
-
             <MaterialUISwitch
               checked={isDarkMode as boolean}
               onChange={handleChangeTheme}

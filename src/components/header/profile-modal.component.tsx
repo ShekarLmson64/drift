@@ -1,14 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded'
-import { MobileMenuStack, ModalStack, PositionBox, RowStack } from './header.styles'
-import Link from 'next/link'
+import { ModalStack, PositionBox, RowStack } from './header.styles'
 import Dimage from '../custom/customImage/customImage'
 import { DesktopPxToVw, MobilePxToVw } from '@/utils/pxToVw'
 import { Button, Stack, Typography } from '@mui/material'
 import { getItem } from '@/utils/manageLocalStorage'
 import {
   Edit as EditIcon,
-  AccountCircleTwoTone as AccountCircleIcon,
 } from '@mui/icons-material'
 import { useRouter } from 'next/router'
 import { useMobileCheck } from '@/hooks/mobileCheck'
@@ -40,12 +38,11 @@ export default function ProfileModal({ handleClose }: any) {
           </RowStack>
         </Stack>
         <Button
-          fullWidth
           variant='contained'
           onClick={handleLogout}
           sx={{ backgroundColor: '#000' }}
         >
-          <Typography px={2}>
+          <Typography px={3}>
             Log out
           </Typography>
         </Button>
