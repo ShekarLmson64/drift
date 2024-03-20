@@ -116,7 +116,7 @@ export default function SignIn({ setIsSignIn }: any) {
             id="password"
             name="password"
             type={showPassword ? 'text' : 'password'}
-            error={false}
+            error={errors?.["password"]}
             onChange={handlePayload}
             endAdornment={
               <InputAdornment position="end">
