@@ -1,5 +1,5 @@
 import { createTheme } from '@mui/material/styles'
-
+import themeOverrides from './common.overrides'
 const darkTheme = createTheme({
   palette: {
     mode: 'dark',
@@ -35,6 +35,7 @@ const darkTheme = createTheme({
       disabled: 'rgba(255, 255, 255, 0.38)',
     },
   },
+  ...themeOverrides,
 })
 
 export default darkTheme
