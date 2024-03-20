@@ -1,10 +1,8 @@
 import Head from "next/head";
-import { Inter } from "next/font/google";
 import PageLayout from "@/layout/pageLayout";
+import { basePageServerSide } from "@/lib/getPageProps";
 
-const inter = Inter({ subsets: ["latin"] });
-
-export default function Home() {
+export default function Home(props: any) {
   return (
     <>
       <Head>
@@ -13,7 +11,13 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/drift_icon.png" sizes="any" />
       </Head>
-      <PageLayout />
+      <PageLayout {...props} />
     </>
   );
+}
+
+export const getServerSideProps = async (context: any) => {
+  let { resolvedUrl } = context
+  const baseProps = await basePageServerSide(context, resolvedUrl.split("?")[0])
+  return baseProps
 }
