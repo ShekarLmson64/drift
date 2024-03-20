@@ -1,6 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
 import PageLayout from '@/layout/pageLayout'
+import { basePageServerSide } from '@/lib/getPageProps'
 
 export default function Homepage() {
     return (
@@ -14,4 +15,10 @@ export default function Homepage() {
             <PageLayout />
         </>
     )
+}
+
+export const getServerSideProps = async (context: any) => {
+    let { resolvedUrl } = context
+    const baseProps = await basePageServerSide(context, resolvedUrl.split("?")[0])
+    return baseProps
 }
