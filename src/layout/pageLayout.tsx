@@ -1,15 +1,27 @@
 import Footer from '@/components/footer/footer.component'
 import Header from '@/components/header/header.component'
-import { Box } from '@mui/material'
-import React from 'react'
+import { Box, useMediaQuery } from '@mui/material'
+import React, { useMemo } from 'react'
 import PageBody from './pageBody'
+import { PageContext } from '@/lib/prepare-page-context'
 
-export default function PageLayout() {
+export default function PageLayout({
+  isMobileInitial
+}: any) {
+  const isMobile = isMobileInitial || useMediaQuery("(max-width:641px)", { noSsr: true })
+  const pageContext = useMemo(
+    () => ({
+      isMobile
+    }),
+    [],
+  )
   return (
     <Box>
-      <Header />
-      <PageBody />
-      <Footer />
+      <PageContext.Provider value={pageContext}>
+        <Header />
+        <PageBody />
+        <Footer />
+      </PageContext.Provider>
     </Box>
   )
 }

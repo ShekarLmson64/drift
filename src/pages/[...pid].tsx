@@ -3,7 +3,7 @@ import Head from 'next/head'
 import PageLayout from '@/layout/pageLayout'
 import { basePageServerSide } from '@/lib/getPageProps'
 
-export default function Homepage() {
+export default function Homepage(props: any) {
     return (
         <>
             <Head>
@@ -12,13 +12,13 @@ export default function Homepage() {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/drift_icon.png" sizes="any" />
             </Head>
-            <PageLayout />
+            <PageLayout {...props} />
         </>
     )
 }
 
-// export const getServerSideProps = async (context: any) => {
-//     let { resolvedUrl } = context
-//     const baseProps = await basePageServerSide(context, resolvedUrl.split("?")[0])
-//     return baseProps
-// }
+export const getServerSideProps = async (context: any) => {
+    let { resolvedUrl } = context
+    const baseProps = await basePageServerSide(context, resolvedUrl.split("?")[0])
+    return baseProps
+}
