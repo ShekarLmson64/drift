@@ -30,6 +30,7 @@ import {
   HeaderStack,
   IconWrapper,
   MainBox,
+  MaterialUISwitch,
   SearchIconWrapper,
   SpacerBox,
   StyledInputBase,
@@ -90,6 +91,7 @@ export default function Header() {
   const handleChangeTheme = (event: React.ChangeEvent<HTMLInputElement>) => {
     toggleSiteTheme()
   }
+
   return (
     <Box>
       <MainBox sx={{ background: theme.palette.background.paper }}>
@@ -173,10 +175,10 @@ export default function Header() {
                 </Typography>
               )}
             </IconWrapper>
-            <Switch
-              checked={isDarkMode}
+
+            <MaterialUISwitch
+              checked={isDarkMode as boolean}
               onChange={handleChangeTheme}
-              inputProps={{ 'aria-label': 'controlled' }}
             />
           </ButtonStack>
         </HeaderStack>

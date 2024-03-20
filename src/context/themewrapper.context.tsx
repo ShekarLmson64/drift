@@ -1,11 +1,11 @@
-import React, { createContext, useContext, useState } from 'react'
+import React, { createContext, useContext, useEffect, useState } from 'react'
 import { ThemeProvider } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
 import darkTheme from '@/theme/dark.theme'
 import lightTheme from '@/theme/light.theme'
 
 interface ThemeContextType {
-  isDarkMode: boolean
+  isDarkMode: boolean | null
   toggleTheme: () => void
 }
 
@@ -18,13 +18,25 @@ interface ThemeProviderWrapperProps {
 export const ThemeProviderWrapper: React.FC<ThemeProviderWrapperProps> = ({
   children,
 }) => {
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(false)
+  const [isDarkMode, setIsDarkMode] = useState<boolean | null>(null)
+
+  useEffect(() => {
+    const getAppliedTheme: string | null =
+      global?.window?.localStorage?.getItem('systemTheme')
+    setIsDarkMode(getAppliedTheme === 'dark')
+  }, [])
 
   const toggleTheme = () => {
-    setIsDarkMode(prevMode => !prevMode)
+    const newMode = !isDarkMode
+    global?.window?.localStorage?.setItem(
+      'systemTheme',
+      newMode ? 'dark' : 'light',
+    )
+    setIsDarkMode(newMode)
   }
 
-  const theme = isDarkMode ? darkTheme : lightTheme
+  const theme =
+    isDarkMode === null ? lightTheme : isDarkMode ? darkTheme : lightTheme
 
   return (
     <ThemeContext.Provider value={{ isDarkMode, toggleTheme }}>
