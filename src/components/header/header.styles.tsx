@@ -136,7 +136,7 @@ export const ModalStack = styled(Stack)(() => ({
     padding: DesktopPxToVw(100),
     rowGap: DesktopPxToVw(60),
     "@media (max-width: 640px)": {
-        width: "100%",
+        width: "100vw",
         padding: MobilePxToVw(80),
         rowGap: MobilePxToVw(50),
     },

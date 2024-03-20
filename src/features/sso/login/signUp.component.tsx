@@ -3,10 +3,11 @@ import { CustomInputField, DetailStack, TitleColumn } from './loginScreen.styles
 import { useMobileCheck } from '@/customHooks/mobileCheck'
 import { handler as RegisterHandler } from '../api/handlers/register.service';
 import { AccountCircle, Visibility, VisibilityOff } from '@mui/icons-material';
-import { Button, FormControl, IconButton, InputAdornment, Stack, Typography } from '@mui/material'
-import { DesktopPxToVw } from '@/utils/pxToVw';
+import { Button, CircularProgress, FormControl, FormHelperText, IconButton, InputAdornment, Stack, Typography } from '@mui/material'
+import { DesktopPxToVw, MobilePxToVw } from '@/utils/pxToVw';
 import { handler as ProfileHandler } from '../api/handlers/profile.service';
 import { useRouter } from 'next/router';
+import { validateField } from '@/utils/validateField';
 
 export default function SignUp({ setIsSignIn }: any) {
     const isMobile = useMobileCheck()
@@ -16,22 +17,26 @@ export default function SignUp({ setIsSignIn }: any) {
         {
             name: "firstName",
             placeholder: "First Name",
-            fullWidth: false
+            fullWidth: false,
+            errorText: "Invalid First Name",
         },
         {
             name: "lastName",
             placeholder: "Last Name",
-            fullWidth: false
+            fullWidth: false,
+            errorText: "Invalid Last Name",
         },
         {
             name: "email",
             placeholder: "Enter your email",
-            fullWidth: true
+            fullWidth: true,
+            errorText: "Invalid Email Id",
         },
         {
             name: "password",
             placeholder: "Password",
-            fullWidth: true
+            fullWidth: true,
+            errorText: "Invalid Password",
         }
     ]
     //**states */
@@ -43,12 +48,22 @@ export default function SignUp({ setIsSignIn }: any) {
         password: "",
         registeredAt: "DRIFT"
     })
+    const [errors, setErrors]: any = useState({
+        firstName: false,
+        lastName: false,
+        email: false,
+        password: false,
+    })
 
     const handlePayload = (e: any) => {
         const { value, name } = e?.target
         setPayload({
             ...payload,
             [name]: value
+        })
+        setErrors({
+            ...errors,
+            [name]: validateField(name, value)
         })
     }
     const handleClickShowPassword = () => {
@@ -123,14 +138,17 @@ export default function SignUp({ setIsSignIn }: any) {
                                 }
                                 placeholder={field?.placeholder}
                             />
+                            <FormHelperText>{errors[field?.name] ? field?.errorText : ""}</FormHelperText>
                         </FormControl>
                     )
                 }
                 <Button
-                    disabled={loading} fullWidth
+                    fullWidth
+                    disabled={loading}
                     variant="contained"
                     onClick={handleRegister}
-                    sx={{ backgroundColor: "#000" }}>
+                    sx={{ backgroundColor: "#000" }}
+                    endIcon={loading ? <CircularProgress size={isMobile ? MobilePxToVw(20) : DesktopPxToVw(20)} /> : <></>}>
                     Register
                 </Button>
             </DetailStack>
@@ -141,7 +159,8 @@ export default function SignUp({ setIsSignIn }: any) {
                         variant='body2'
                         fontWeight={600}
                         sx={{ textDecoration: "underline", cursor: "pointer" }}
-                        onClick={() => setIsSignIn(true)}>
+                        onClick={() => setIsSignIn(true)}
+                    >
                         Sign In
                     </Typography>
                 </Stack>

@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { TitleColumn } from './loginScreen.styles'
 import { useMobileCheck } from '@/customHooks/mobileCheck'
-import { AccountCircle, Visibility, VisibilityOff } from '@mui/icons-material';
-import { Button, FormControl, IconButton, InputAdornment, OutlinedInput, Stack, Typography } from '@mui/material'
+import { AccountCircle, Password, Visibility, VisibilityOff } from '@mui/icons-material';
+import { Button, CircularProgress, FormControl, FormHelperText, IconButton, InputAdornment, OutlinedInput, Stack, Typography } from '@mui/material'
 import { DesktopPxToVw, MobilePxToVw } from '@/utils/pxToVw';
 import { handler as LoginHandler } from '../api/handlers/login.service';
 import { handler as ProfileHandler } from '../api/handlers/profile.service';
 import { useRouter } from 'next/router';
+import { validateField } from '@/utils/validateField';
 
 export default function SignIn({ setIsSignIn }: any) {
     const router = useRouter()
@@ -18,12 +19,20 @@ export default function SignIn({ setIsSignIn }: any) {
         email: "",
         password: ""
     })
+    const [errors, setErrors]: any = useState({
+        email: false,
+        password: false
+    })
 
     const handlePayload = (e: any) => {
         const { value, name } = e?.target
         setPayload({
             ...payload,
             [name]: value
+        })
+        setErrors({
+            ...errors,
+            [name]: validateField(name, value)
         })
     }
     const handleClickShowPassword = () => {
@@ -47,15 +56,23 @@ export default function SignIn({ setIsSignIn }: any) {
     }
     const handleLogin = async () => {
         setLoading(true)
-        try {
-            const { error, data } = await LoginHandler.apiCall(payload)
-            if (error === false) {
-                global?.window?.localStorage?.setItem("accessToken", data?.token)
-                setProfileDetails()
+        if (payload.password !== "") {
+            try {
+                const { error, data } = await LoginHandler.apiCall(payload)
+                if (error === false) {
+                    global?.window?.localStorage?.setItem("accessToken", data?.token)
+                    setProfileDetails()
+                }
+            } catch (error) {
+                console.log("error at SSO Login", error)
+            } finally {
+                setLoading(false)
             }
-        } catch (error) {
-            console.log("error at SSO Login", error)
-        } finally {
+        } else {
+            setErrors({
+                ...errors,
+                password: true
+            })
             setLoading(false)
         }
     }
@@ -71,20 +88,24 @@ export default function SignIn({ setIsSignIn }: any) {
                         onChange={handlePayload}
                         id="email"
                         name="email"
+                        type="email"
+                        error={errors?.["email"]}
                         endAdornment={
                             <InputAdornment position="end">
                                 <AccountCircle />
                             </InputAdornment>
                         }
-                        placeholder='Enter your email'
+                        placeholder="Enter your email"
                         disabled={loading}
                     />
+                    <FormHelperText>{errors["email"] ? "Invalid Email" : ""}</FormHelperText>
                 </FormControl>
                 <FormControl variant="outlined" fullWidth>
                     <OutlinedInput
                         id="password"
                         name="password"
                         type={showPassword ? 'text' : 'password'}
+                        error={false}
                         onChange={handlePayload}
                         endAdornment={
                             <InputAdornment position="end">
@@ -100,13 +121,14 @@ export default function SignIn({ setIsSignIn }: any) {
                         disabled={loading}
                         placeholder="Password"
                     />
+                    <FormHelperText>{errors["password"] ? "Invalid Password" : ""}</FormHelperText>
                 </FormControl>
                 <Button
                     variant="contained"
                     onClick={handleLogin}
                     sx={{ backgroundColor: "#000" }}
-                    disabled={loading}
-                >
+                    disabled={loading || errors["email"]}
+                    endIcon={loading ? <CircularProgress size={isMobile ? MobilePxToVw(20) : DesktopPxToVw(20)} /> : <></>}>
                     Proceed
                 </Button>
             </Stack>
@@ -117,7 +139,7 @@ export default function SignIn({ setIsSignIn }: any) {
                         variant='body2'
                         fontWeight={600}
                         sx={{ textDecoration: "underline", cursor: "pointer" }}
-                        onClick={() => setIsSignIn(false)}>
+                        onClick={() => !loading && setIsSignIn(false)}>
                         Sign Up
                     </Typography>
                 </Stack>
