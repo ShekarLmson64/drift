@@ -1,6 +1,6 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-# Project Name
+# Drift Clothing
 
 Drift Clothing is an eCommerce platform where you kind find your fashion destination.
 
