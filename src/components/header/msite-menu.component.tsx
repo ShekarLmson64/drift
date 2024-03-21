@@ -16,8 +16,8 @@ export default function MobileMenu({ handleClose }: any) {
                 <Dimage
                     src={"/icons/home-icon.png"}
                     alt={"home-icon"}
-                    width={'100%'}
-                    height={'100%'}
+                    width={"100%"}
+                    height={"auto"}
                     styles={{ maxWidth: MobilePxToVw(160) }}
                 />
             </Link>
