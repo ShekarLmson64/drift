@@ -1,5 +1,5 @@
 import { createTheme } from '@mui/material/styles'
-import { Roboto } from 'next/font/google'
+import themeOverrides from './common.overrides'
 
 const lightTheme = createTheme({
   palette: {
@@ -36,6 +36,7 @@ const lightTheme = createTheme({
       disabled: 'rgba(0, 0, 0, 0.38)',
     },
   },
+  ...themeOverrides,
 })
 
 export default lightTheme
