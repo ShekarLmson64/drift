@@ -16,6 +16,8 @@ export const projectConfig: ProjectConfig = {
 export const config: ClientConfig = {
   ...projectConfig,
   apiVersion: '2022-03-07',
+  token:
+    'sku8OVybhmAnM1DJxkGpAqUV1fkzzNIXFOMfUju95KOEisEHujcl2ohoDcsBDGVq5zqquldbipPr4MMSrbylnaOXSpzWRQst3xVJEkWuyHvjYUcXN8Bj6JQuKEKPqzZvD3jRb99vW3Bcys8i2oMllJjJn89VsjE38b2zfoHcOSE1SAgqbycb',
   ignoreBrowserTokenWarning: true,
   /**
    * Set useCdn to `false` if your application require the freshest possible
