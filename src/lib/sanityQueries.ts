@@ -1,5 +1,4 @@
-import { groq } from "next-sanity"
-import { getClient } from "../lib-sanity"
+import { groq } from 'next-sanity'
 
 export const bodyGroqFragment = `"pageBody":{
     ...,
@@ -20,7 +19,6 @@ export const bodyGroqFragment = `"pageBody":{
   }`
 
 export const pageGroqFragment = `{
-    ${bodyGroqFragment},
     "footer":*[_type == "footer" && path =="/footer"],
     "header": *[_type == "header" && path =="/header"],
     "footer":*[_type == "footer" && path =="/footer"],
@@ -28,7 +26,7 @@ export const pageGroqFragment = `{
 
 export const getPageQuery = (path: any) => {
   return groq`
-  *[_type == "page" && path == "${path}"]${pageGroqFragment}`
+  *[_type == "page" && path == "${path}"]`
 }
 
 export const getBodyQuery = (path: any) => {
