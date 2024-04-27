@@ -15,7 +15,9 @@ export default function GroupWith2IrregularColumns({ items }: GroupInterface) {
             rowGap={isMobile ? MobilePxToVw(30) : DesktopPxToVw(30)}>
             {
                 items?.map((item: any, index: number) =>
-                    <Grid item xs={12} sm={index < 2 ? index % 2 === 0 ? 4 : 8 : index % 2 === 0 ? 8 : 4}>
+                    <Grid item
+                        xs={12}
+                        sm={index < 2 ? index % 2 === 0 ? 4.5 : 7.5 : index % 2 === 0 ? 7.5 : 4.5}>
                         {renderComponentUtility(item)}
                     </Grid>)
             }
