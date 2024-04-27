@@ -11,7 +11,7 @@ export default function renderGroupVariant(variant: string, items: any) {
         "brandImageCarousel": <GroupBrandCarousel items={items} />,
         "drift.group.group-with-4-columns": <GroupWith4Columns items={items} />,
         "productGroup": <GroupWith4Products items={items} />,
-        "drift.group.group-with-2-irregular-columns": <GroupWith2IrregularColumns items={items} />,
+        "greyBackgroundGroup": <GroupWith2IrregularColumns items={items} />,
     }
     return (
         allVariants[variant]
