@@ -6,18 +6,18 @@ import Title from '../title/title.component'
 import renderGroupVariant from './renderGroupVariant'
 
 export default function Group(props: any) {
+  const {
+    title,
+    variant,
+    largeVariant,
+    items,
+  } = props
   const isMobile = useMobileCheck()
-  const title = {
-    mobile: ['NEW ARRIVALS'],
-    desktop: ['NEW ARRIVALS'],
-  }
+  const groupVariant = isMobile ? variant : largeVariant
   return (
-    <Stack
-      rowGap={isMobile ? MobilePxToVw(40) : DesktopPxToVw(60)}
-      p={isMobile ? MobilePxToVw(40) : DesktopPxToVw(60)}
-    >
+    <>
       <Title title={title} />
-      {renderGroupVariant('', {})}
-    </Stack>
+      {groupVariant && renderGroupVariant(groupVariant, items)}
+    </>
   )
 }

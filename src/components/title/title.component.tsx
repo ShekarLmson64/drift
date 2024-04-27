@@ -5,7 +5,7 @@ import { TitleStack } from './title.styles'
 
 export default function Title({ title, titleVariant }: any) {
   const isMobile = useMobileCheck()
-  const titles = isMobile ? title?.mobile || title?.desktop : title?.desktop
+  const titles = typeof title === typeof "" ? [title] : (isMobile ? title?.mobile || title?.desktop : title?.desktop)
   return (
     <TitleStack width={'100'}>
       {titles?.map((singleTitle: any) => (

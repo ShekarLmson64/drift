@@ -4,7 +4,6 @@ import PageLayout from '@/layout/pageLayout'
 import { basePageServerSide } from '@/lib/getPageProps'
 
 export default function Homepage(props: any) {
-  console.log('props', props)
   return (
     <>
       <Head>

@@ -4,11 +4,11 @@ import Card from './card'
 import Banner from './banner/banner.component'
 
 export const renderComponentUtility = (props: any) => {
-  switch (props?.type) {
+  switch (props?._type) {
     case 'group':
       return <Group {...props} />
     case 'card':
-      return <Card />
+      return <Card {...props} />
     case 'banner':
       return <Banner {...props} />
     // case "tabLinks":
@@ -19,14 +19,6 @@ export const renderComponentUtility = (props: any) => {
     //     return <RenderCarouselComponent {...props} />
     // case "media":
     //     return <RenderMediaComponent {...props} />
-    // case "information":
-    //     return <RenderInformationComponent {...props} index={index} />
-    // case "accordion":
-    //     return <RenderAccordionComponent {...props} index={index} />
-    // case "faqs":
-    //     return <RenderFaqsComponent {...props} />
-    // case "stepper":
-    //     return <RenderStepperComponent {...props} />
     // case "divider":
     //     return <RenderDividerComponent {...props} />
     // case "custom":

@@ -6,7 +6,9 @@ import PageBody from './pageBody'
 import { PageContext } from '@/lib/prepare-page-context'
 
 export default function PageLayout({
-  isMobileInitial
+  isMobileInitial,
+  data,
+  ...props
 }: any) {
   const isMobile = isMobileInitial || useMediaQuery("(max-width:641px)", { noSsr: true })
   const pageContext = useMemo(
@@ -19,7 +21,7 @@ export default function PageLayout({
     <Box>
       <PageContext.Provider value={pageContext}>
         <Header />
-        <PageBody />
+        <PageBody {...data} />
         <Footer />
       </PageContext.Provider>
     </Box>

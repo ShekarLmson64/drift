@@ -1,13 +1,16 @@
-import Group from '@/components/group'
-import Banner from '@/components/banner/banner.component'
 import { Stack } from '@mui/material'
 import React from 'react'
+import { renderComponentUtility } from '@/components/renderComponentUtility'
 
-export default function PageBody() {
+export default function PageBody({ items }: any) {
     return (
-        <Stack>
-            <Banner />
-            <Group />
+        <Stack width={"100%"}>
+            {
+                items?.map((item: any) =>
+                    <>
+                        {renderComponentUtility(item)}
+                    </>)
+            }
         </Stack>
     )
 }
