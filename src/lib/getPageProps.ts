@@ -7,7 +7,7 @@ const getServerSideProps = async (context: any, path: any) => {
       context.req.headers['user-agent'] || '',
     )
   let queryParams = context.query
-  let tempPath = path
+  const tempPath = path === '/' ? '/home' : 'path'
   const query = getPageQuery(tempPath)
   const fetchedData = await getClient(true).fetch(query, { tempPath })
 
@@ -19,11 +19,11 @@ const getServerSideProps = async (context: any, path: any) => {
 
   return {
     props: {
-      // key: tempPath + context?.query?.pid,
+      key: tempPath + context?.query?.pid,
       data: fetchedData?.[0] ?? [],
       // bannerTitle: fetchedData?.[0]?.pageBody?.items?.[0]?.title || "",
       // bannerLogo: fetchedData?.[0]?.header?.[0]?.secondaryLogo?.asset?._ref || "",
-      // queryParams: queryParams,
+      queryParams: queryParams,
       isMobileInitial: isMobileInitial,
     },
   }
