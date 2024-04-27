@@ -184,7 +184,7 @@ export default function Header() {
           </ButtonStack>
         </HeaderStack>
       </MainBox>
-      <SpacerBox />
+      <SpacerBox aria-label="spacer"/>
       <Drawer open={showMenu} onClose={handleClose} anchor='left'>
         <MobileMenu handleClose={handleClose} />
       </Drawer>
