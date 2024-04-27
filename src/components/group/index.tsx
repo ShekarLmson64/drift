@@ -1,6 +1,6 @@
 import { useMobileCheck } from '@/hooks/mobileCheck'
 import { DesktopPxToVw, MobilePxToVw } from '@/utils/pxToVw'
-import { Stack } from '@mui/material'
+import { Box, Stack } from '@mui/material'
 import React from 'react'
 import Title from '../title/title.component'
 import renderGroupVariant from './renderGroupVariant'
@@ -15,9 +15,9 @@ export default function Group(props: any) {
   const isMobile = useMobileCheck()
   const groupVariant = isMobile ? variant : largeVariant
   return (
-    <>
-      <Title title={title} />
+    <Box px={title ? isMobile ? MobilePxToVw(20) : DesktopPxToVw(60) : 0}>
+      {title && <Title title={title} />}
       {groupVariant && renderGroupVariant(groupVariant, items)}
-    </>
+    </Box>
   )
 }
