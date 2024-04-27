@@ -15,7 +15,7 @@ export default function Group(props: any) {
   const isMobile = useMobileCheck()
   const groupVariant = isMobile ? variant : largeVariant
   return (
-    <Box px={title ? isMobile ? MobilePxToVw(20) : DesktopPxToVw(60) : 0}>
+    <Box px={title ? isMobile ? MobilePxToVw(20) : DesktopPxToVw(100) : 0}>
       {title && <Title title={title} />}
       {groupVariant && renderGroupVariant(groupVariant, items)}
     </Box>

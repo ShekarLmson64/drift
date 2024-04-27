@@ -18,7 +18,7 @@ export const SpacerBox = styled(Box)(() => ({
   width: '100%',
   height: DesktopPxToVw(90),
   '@media (max-width: 640px)': {
-    height: MobilePxToVw(110),
+    height: MobilePxToVw(100),
   },
 }))
 

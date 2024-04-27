@@ -15,7 +15,6 @@ export default function ProductCard({
             src={urlFor(isMobile ? image?.asset?._ref : largeImage?.asset?._ref).url()}
             alt={'home-icon'}
             styles={{
-                maxHeight: isMobile ? MobilePxToVw(350) : DesktopPxToVw(400),
                 borderRadius: isMobile ? MobilePxToVw(20) : DesktopPxToVw(30)
             }}
         />
