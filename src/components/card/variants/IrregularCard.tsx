@@ -9,10 +9,11 @@ export default function IrregularCard({
     largeImage
 }: any) {
     const isMobile = useMobileCheck()
+    const imageData = isMobile ? image : largeImage
     return (
         <Dimage
-            src={urlFor(isMobile ? image?.asset?._ref : largeImage?.asset?._ref).url()}
-            alt={'home-icon'}
+            src={urlFor(imageData?.asset?._ref).url()}
+            alt={imageData?.altText}
             width={"100%"}
             height={"100%"}
             styles={{
