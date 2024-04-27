@@ -11,7 +11,7 @@ export default function Title({ title, titleVariant }: any) {
       {titles?.map((singleTitle: any) => (
         <Typography
           key={singleTitle}
-          fontWeight={700}
+          fontWeight={800}
           variant={isMobile ? 'h4' : 'h3'}
         >
           {singleTitle}

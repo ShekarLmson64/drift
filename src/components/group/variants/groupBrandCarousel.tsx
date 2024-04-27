@@ -20,8 +20,13 @@ export default function GroupBrandCarousel({ items }: GroupInterface) {
         swipeToSlide: true,
         initialSlide: 0,
         slidesToShow: isMobile ? 3 : 5,
-        slidesToScroll: 1,
-        padding: 2
+        padding: 2,
+        touchThreshold: 10, // Touch swipe threshold
+        sx: {
+            "&.slick-slider": {
+                touchAction: "pan-y"
+            }
+        }
     }
     return (
         <Box sx={{ backgroundColor: "#000" }} py={3}>
