@@ -7,15 +7,15 @@ const getServerSideProps = async (context: any, path: any) => {
       context.req.headers['user-agent'] || '',
     )
   let queryParams = context.query
-  const tempPath = path === '/' ? '/home' : 'path'
+  const tempPath = path === '/' ? '/home' : path
   const query = getPageQuery(tempPath)
   const fetchedData = await getClient(true).fetch(query, { tempPath })
 
-  // if (fetchedData?.[0] == null) {
-  //   return {
-  //     notFound: true,
-  //   }
-  // }
+  if (fetchedData?.[0] == null) {
+    return {
+      notFound: true,
+    }
+  }
 
   return {
     props: {

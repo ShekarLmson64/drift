@@ -18,7 +18,8 @@ export default function GroupWith4Products({ items }: GroupInterface) {
                 "scrollbar-width": "none"
             }}
             overflow={isMobile ? "scroll" : "unset"}>
-            <Stack flexDirection={"row"} width={isMobile ? "fit-content" : "100%"}
+            <Stack flexDirection={"row"} width={isMobile ? "fit-content" : "88vw"}
+                justifyContent={isMobile ? "unset" : "space-around"}
                 columnGap={isMobile ? MobilePxToVw(20) : DesktopPxToVw(55)}
                 sx={{ flexWrap: isMobile ? "nowrap !important" : "wrap" }}>
                 {
