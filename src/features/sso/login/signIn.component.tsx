@@ -18,6 +18,7 @@ import { handler as LoginHandler } from '../api/handlers/login.service'
 import { handler as ProfileHandler } from '../api/handlers/profile.service'
 import { useRouter } from 'next/router'
 import { validateField } from '@/utils/validateField'
+import RenderActionItem from '@/components/hoc/actionItem/action.styles'
 
 export default function SignIn({ setIsSignIn }: any) {
   const router = useRouter()
@@ -134,14 +135,13 @@ export default function SignIn({ setIsSignIn }: any) {
           />
           <FormHelperText>{errors["password"] ? "Invalid Password" : ""}</FormHelperText>
         </FormControl>
-        <Button
+        <RenderActionItem
           variant="contained"
           onClick={handleLogin}
-          sx={{ backgroundColor: "#000" }}
           disabled={loading || errors["email"]}
+          title={"Proceed"}
           endIcon={loading ? <CircularProgress size={isMobile ? MobilePxToVw(20) : DesktopPxToVw(20)} /> : <></>}>
-          Proceed
-        </Button>
+        </RenderActionItem>
       </Stack>
       <TitleColumn>
         <Stack flexDirection={"row"} columnGap={"6px"}>

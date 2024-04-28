@@ -38,7 +38,7 @@ export default function HeaderMenu() {
         <Box key={item?.label}>
           {item?.type === 'link' ? (
             <Link href={item?.url}>
-              <Typography>{item?.label}</Typography>
+              <Typography whiteSpace={"nowrap"}>{item?.label}</Typography>
             </Link>
           ) : (
             <Stack>

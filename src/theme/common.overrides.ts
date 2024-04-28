@@ -1,4 +1,3 @@
-import { blue, red } from '@mui/material/colors'
 import { ThemeOptions } from '@mui/material/styles'
 
 const themeOverrides: ThemeOptions = {
@@ -9,17 +8,15 @@ const themeOverrides: ThemeOptions = {
           props: { variant: 'contained' },
           style: {
             textTransform: 'none',
-            border: `2px dashed ${blue[500]}`,
-            padding: '30px',
-            ':hover': {
-              backgroundColor: 'red',
-            },
+            padding: '10px',
+            borderRadius: '30px',
           },
         },
         {
-          props: { variant: 'outlined', color: 'secondary' },
+          props: { variant: 'outlined' },
           style: {
-            border: `4px dashed ${red[500]}`,
+            border: '1px solid #E6E6E6',
+            borderRadius: '30px',
           },
         },
       ],

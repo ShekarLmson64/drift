@@ -15,7 +15,7 @@ export default function Title({ title, titleVariant }: any) {
         <Typography
           key={singleTitle}
           fontWeight={800}
-          variant={isMobile ? 'h5' : 'h3'}
+          variant={isMobile ? 'h4' : 'h3'}
         >
           {singleTitle}
         </Typography>

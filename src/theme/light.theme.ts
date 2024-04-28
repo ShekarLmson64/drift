@@ -9,16 +9,16 @@ const lightTheme = createTheme({
       white: '#fff',
     },
     primary: {
-      light: '#7986cb',
-      main: '#3f51b5',
-      dark: '#303f9f',
+      light: '#fff',
+      main: '#000',
+      dark: '#000',
       contrastText: '#fff',
     },
     secondary: {
-      light: '#ff4081',
-      main: '#f50057',
-      dark: '#c51162',
-      contrastText: '#fff',
+      light: '#000',
+      main: '#fff',
+      dark: '#fff',
+      contrastText: '#000',
     },
     error: {
       light: '#e57373',

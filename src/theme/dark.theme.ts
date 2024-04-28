@@ -8,15 +8,15 @@ const darkTheme = createTheme({
       white: '#fff',
     },
     primary: {
-      light: '#7986cb',
-      main: '#3f51b5',
-      dark: '#303f9f',
-      contrastText: '#fff',
+      light: '#000',
+      main: '#fff',
+      dark: '#fff',
+      contrastText: '#000',
     },
     secondary: {
-      light: '#ff4081',
-      main: '#f50057',
-      dark: '#c51162',
+      light: '#fff',
+      main: '#000',
+      dark: '#000',
       contrastText: '#fff',
     },
     error: {
@@ -26,8 +26,8 @@ const darkTheme = createTheme({
       contrastText: '#fff',
     },
     background: {
-      paper: '#424242',
-      default: '#303030',
+      paper: '#282828',
+      default: '#212121',
     },
     text: {
       primary: 'rgba(255, 255, 255, 0.87)',
