@@ -14,7 +14,7 @@ export default function BannerCard({
         <Box width={"100%"}>
             <Dimage
                 src={urlFor(imageData.asset?._ref).url()}
-                alt={imageData || "banner"}
+                alt={imageData?.altText || "banner"}
                 width={'100vw'}
                 height={'100%'}
             />

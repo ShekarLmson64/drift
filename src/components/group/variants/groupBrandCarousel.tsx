@@ -32,8 +32,8 @@ export default function GroupBrandCarousel({ items }: GroupInterface) {
         <Box sx={{ backgroundColor: "#000" }} py={3}>
             <Slider {...settings}>
                 {
-                    items?.map((item: any) =>
-                        <Box sx={{ display: "grid !important", placeItems: "center" }}>
+                    items?.map((item: any, index: number) =>
+                        <Box key={`banner-${index}`} sx={{ display: "grid !important", placeItems: "center" }}>
                             {renderComponentUtility(item)}
                         </Box>)
                 }

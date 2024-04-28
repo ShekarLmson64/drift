@@ -8,14 +8,15 @@ interface GroupInterface {
     items: any[]
 }
 export default function GroupBannerCarousel({ items }: GroupInterface) {
+    const isNotSingle = items?.length > 1
     const settings = {
         arrows: false,
-        infinite: true,
-        autoplay: true,
+        infinite: isNotSingle,
+        autoplay: isNotSingle,
         speed: 2000,
         autoplaySpeed: 5000,
         pauseOnHover: true,
-        swipeToSlide: true,
+        swipeToSlide: isNotSingle,
         initialSlide: 0,
         slidesToShow: 1,
         slidesToScroll: 1
@@ -24,10 +25,10 @@ export default function GroupBannerCarousel({ items }: GroupInterface) {
         <Box sx={{ backgroundColor: "#000" }}>
             <Slider {...settings}>
                 {
-                    items?.map((item: any) =>
-                        <>
+                    items?.map((item: any, index: any) =>
+                        <React.Fragment key={`banner-${index}`}>
                             {renderComponentUtility(item)}
-                        </>)
+                        </React.Fragment>)
                 }
             </Slider>
         </Box>

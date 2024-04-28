@@ -8,8 +8,8 @@ export default function GroupWith4Columns({ items }: GroupInterface) {
     return (
         <Grid container>
             {
-                items?.map((item: any) =>
-                    <Grid item xs={2} sm={4}>
+                items?.map((item: any, index: number) =>
+                    <Grid item xs={2} sm={4} key={`card-${index}`}>
                         {renderComponentUtility(item)}
                     </Grid>)
             }

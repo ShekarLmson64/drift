@@ -30,8 +30,8 @@ export default function GroupWith4Products({ items }: GroupInterface) {
                     columnGap={isMobile ? MobilePxToVw(20) : DesktopPxToVw(55)}
                     sx={{ flexWrap: isMobile ? "nowrap !important" : "wrap" }}>
                     {
-                        items?.map((item: any) =>
-                            <Box textAlign={"center"}>
+                        items?.map((item: any, index: number) =>
+                            <Box textAlign={"center"}key={`product-${index}`}>
                                 {renderComponentUtility(item)}
                             </Box>)
                     }
